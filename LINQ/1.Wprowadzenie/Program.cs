@@ -17,7 +17,24 @@ namespace _1.Wprowadzenie
             PokazDuzePlikiZLinq(sciezka);
 
             Console.WriteLine("******************");
-            PokazDuzePlikiBezLinq(sciezka);        }
+            PokazDuzePlikiBezLinq(sciezka);
+
+            Console.WriteLine("******************");
+            PokazDuzePlikiZLinq2(sciezka);
+
+        }
+
+        private static void PokazDuzePlikiZLinq2(string sciezka)
+        {
+            var zapytanie = new DirectoryInfo(sciezka).GetFiles()
+                            .OrderByDescending(p => p.Length)
+                            .Take(5);
+
+            foreach (var plik in zapytanie)
+            {
+                Console.WriteLine($"{plik.Name,-20}:{plik.Length,20:N0}");
+            }
+        }
 
         private static void PokazDuzePlikiZLinq(string sciezka)
         {
